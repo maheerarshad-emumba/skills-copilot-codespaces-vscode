@@ -6,4 +6,13 @@ const fs = require('fs');
 const path = require('path');
 
 const server = http.createServer((req, res) => {
-  const filePath = path.join(
+  const filePath = path.join(__dirname, 'comments.json');
+  fs.readFile(filePath, (err, data) => {
+    if (err) {
+      res.statusCode = 404;
+      res.end();
+    } else {
+      res.end(data);
+    }
+  });
+});
